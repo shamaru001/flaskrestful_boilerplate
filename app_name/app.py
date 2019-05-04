@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 from .database import db
 from flask_restful import Api, abort
 from app_name.resources.hello import hello
@@ -22,8 +22,10 @@ app.config['SQLALCHEMY_RECORD_QUERIES'] = True
 
 
 @app.route('/favicon.ico')
+
+
 def favicon():
-        # return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    # return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
     abort(STATUS.NOT_FOUND)
 
 
