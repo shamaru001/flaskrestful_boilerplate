@@ -1,0 +1,10 @@
+*sqlite*
+bin/
+include/
+lib/
+*pyc*
+__pycache__
+#package-lock.json
+#pip-selfcheck.json
+#*.db
+#!*/*migrations*

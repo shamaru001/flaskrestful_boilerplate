@@ -1,0 +1,40 @@
+version: '3'
+services:
+  communities_db:
+    image: postgres:11.1-alpine
+    container_name: communities_db
+    environment:
+      POSTGRES_PASSWORD: communities_kommu
+      POSTGRES_DB: communities
+#      POSTGRES_USER: communities_app
+    networks: [kommu_dbs]
+    restart: always
+  communities:
+    image: python:3.7.1-alpine3.8
+    container_name: communities
+    environment:
+      #DB CONFIGURATION
+      DB_NAME: communities
+      DB_USER: postgres
+      DB_PASS: communities_kommu
+      DB_HOST: communities_db
+      USERS_SERVICE_HOST: "users"
+      USERS_SERVICE_PORT: "8000"
+      USERS_SERVICE_PATH: "/users"
+    restart: always
+    build:
+      context: .
+    volumes:
+      - .:/usr/app/
+    ports:
+      - 5002:5000
+    depends_on:
+      - communities_db
+    networks: [kommu_dbs,kommu]
+
+networks:
+  kommu_dbs:
+    external: true
+  kommu:
+    external: true
+
