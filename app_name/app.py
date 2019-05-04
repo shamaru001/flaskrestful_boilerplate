@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request
 from .database import db
 from flask_restful import Api, abort
-from app.resources.hello import hello
+from app_name.resources.hello import hello
 from .settings import DATABASE_URLS, DB_ENGINE, DEBUG, APP_NAME
-import app.resources.status_code as HTTP
+import app_name.resources.status_code as STATUS
 from flask_migrate import Migrate
 
 app = Flask(APP_NAME)
@@ -24,7 +24,7 @@ app.config['SQLALCHEMY_RECORD_QUERIES'] = True
 @app.route('/favicon.ico')
 def favicon():
         # return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
-    abort(HTTP.NOT_FOUND)
+    abort(STATUS.NOT_FOUND)
 
 
 api.add_resource(hello, '/')

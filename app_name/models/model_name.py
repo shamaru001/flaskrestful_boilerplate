@@ -1,4 +1,4 @@
-from communities.database import db
+from app_name.database import db
 from .basic_operations import basic_operations
 
 # Example of a model
